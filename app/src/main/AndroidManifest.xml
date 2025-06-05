@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+    <!-- 通知權限（Android 13+ 必要） -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -13,18 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NightMarketTimer"
         tools:targetApi="31">
+
+        <!-- 起始畫面 -->
+        <!-- 起始畫面 -->
         <activity
-            android:name=".CountdownActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SelectStoreActivity"
+            android:exported="true"> <!-- ✅ 新增這行 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <!-- 餐點選擇畫面（你要新增的） -->
+        <activity android:name=".SelectItemsActivity" />
+
+        <!-- 倒數畫面 -->
+        <activity android:name=".CountdownActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -7,12 +7,22 @@
     android:gravity="center"
     android:padding="24dp">
 
+
+    <TextView
+        android:id="@+id/priceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="💰 總金額：0 元"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:layout_marginTop="12dp"/>
+
     <TextView
         android:id="@+id/timerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="倒數中..."
-        android:textSize="32sp"
+        android:textSize="65sp"
         android:textStyle="bold"
         android:textColor="#D84315" />
 
@@ -20,14 +30,18 @@
         android:id="@+id/hintText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="準備好開吃！"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:layout_marginTop="24dp"/>
+
     <Button
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
+        android:layout_width="269dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="🔙 返回主畫面"
-        android:layout_marginTop="32dp"/>
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

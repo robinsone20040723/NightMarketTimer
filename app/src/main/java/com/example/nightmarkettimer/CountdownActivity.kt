@@ -19,13 +19,14 @@ class CountdownActivity : AppCompatActivity() {
 
     private lateinit var timerText: TextView
     private lateinit var hintText: TextView
+    private lateinit var priceText: TextView // 🆕 新增顯示金額的 TextView
     private lateinit var btnBack: Button
 
     private var countDownTimer: CountDownTimer? = null
     private var timeLeftInSeconds: Int = 60
     private var foodName: String = "小吃"
     private var hintMap: Map<Int, String> = emptyMap()
-    private var isCounting = false
+    private var totalPrice: Int = 0 // 🆕 接收金額用
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,16 +34,26 @@ class CountdownActivity : AppCompatActivity() {
 
         timerText = findViewById(R.id.timerText)
         hintText = findViewById(R.id.hintText)
+        priceText = findViewById(R.id.priceText) // 🆕 綁定金額欄位
         btnBack = findViewById(R.id.btnBack)
 
         foodName = intent.getStringExtra("foodName") ?: "小吃"
         timeLeftInSeconds = intent.getIntExtra("timeLeft", 60)
+        totalPrice = intent.getIntExtra("totalPrice", 0) // 🆕 接收金額
+        @Suppress("UNCHECKED_CAST")
         hintMap = intent.getSerializableExtra("hintMap") as? Map<Int, String> ?: emptyMap()
+
+        // 顯示總金額
+        priceText.text = "💰 總金額：${totalPrice} 元"
 
         btnBack.setOnClickListener {
             countDownTimer?.cancel()
+            val intent = Intent(this, SelectStoreActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
             finish()
         }
+
 
         startCountdown()
     }
@@ -58,31 +69,28 @@ class CountdownActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 timerText.text = "✅ ${foodName} 好了，快去拿！"
-                hintText.text = "🎉 吃起來～"
+                hintText.text = " 吃起來～"
 
-                // 播放提示音
                 MediaPlayer.create(this@CountdownActivity, android.provider.Settings.System.DEFAULT_NOTIFICATION_URI).start()
-
-                // 顯示通知
-                showNotification("🍴 小吃完成", "$foodName 已經好了，快去拿！")
+                showNotification("🍴 餐點完成提醒", "$foodName 已經準備好了，快去拿喔！")
             }
         }.start()
     }
 
     private fun showNotification(title: String, message: String) {
-        val channelId = "food_done_channel"
+        val channelId = "food_ready_channel"
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
-                "小吃完成通知",
+                "完成提醒通知",
                 NotificationManager.IMPORTANCE_HIGH
             )
             notificationManager.createNotificationChannel(channel)
         }
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, SelectStoreActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         val notification = NotificationCompat.Builder(this, channelId)

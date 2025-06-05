@@ -1,7 +1,10 @@
 package com.example.nightmarkettimer
 
+import java.io.Serializable
+
 data class FoodItem(
     val name: String,
     val waitSeconds: Int,
-    val hints: Map<Int, String>  // 例如：180 -> "還有 3 分鐘喔～"
-)
+    val price: Int,
+    val hints: Map<Int, String> = emptyMap()
+) : Serializable
