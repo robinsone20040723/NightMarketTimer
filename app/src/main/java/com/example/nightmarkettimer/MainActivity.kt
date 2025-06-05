@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         FoodItem("🍜 蚵仔麵線", 210, mapOf(120 to "蚵仔麵線香氣撲鼻～", 30 to "碗準備好囉～", 10 to "加點辣更好吃！")),
         FoodItem("🍩 雞蛋糕", 240, mapOf(120 to "雞蛋糕香氣出爐～", 10 to "準備拿紙袋裝！")),
         FoodItem("🍧 剉冰", 180, mapOf(90 to "冰正在剉喔～", 30 to "糖漿快淋好了～", 10 to "吃冰時間到！"))
+
     )
 
 
