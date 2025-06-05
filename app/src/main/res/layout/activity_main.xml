@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF176"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <!-- 標題 -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 夜市小吃倒數計時器 "
+        android:textColor="#333"
+        android:textSize="38sp"
+        android:textStyle="bold" />
+
+    <!-- 選擇提示 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="選擇你想吃的小吃👇"
+        android:layout_marginTop="24dp"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <!-- Spinner 下拉選單 -->
+    <Spinner
+        android:id="@+id/spinnerFoods"
+        android:layout_width="175dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp" />
+
+    <!-- 開始倒數按鈕 -->
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        android:text=" 開始倒數" />
+</LinearLayout>
